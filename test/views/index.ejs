@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./public/head.ejs")%>
+</head>
+<body>
+<%- include("./public/header.ejs")%>
+<section class="main floatfix">
+  <%- include("./public/aside.ejs")%>
+  <section class="main-articles">
+    <ul>
+        <% for(var  i = 0, max = articles.length; i < max; i++) {%>
+      <li class="main-articles-item">
+        <h2><a href="/articles/<%= articles[i].articleID%>"><%= articles[i].articleTitle %></a></h2>
+        <section class="main-articles-items-des">
+          <p>
+            <span>Author：<%= articles[i].articleAuthor %></span>
+            <span>Publish Date：<%= articles[i].articleTime %></span>
+            <span>View Count：<%= articles[i].articleClick %></span>
+            <% if(user) {%>
+            <span class="delete"><a href="/delete/<%= articles[i].articleID %>">Delete</a></span>
+            <span class="modify"><a href="/modify/<%= articles[i].articleID %>">Edit</a></span>
+          <% } %>
+          </p>
+        </section>
+      </li>
+        <% } %>
+    </ul>
+  </section>
+</section>
+<footer>
+  <p>Copyright © 2018 Node</p>
+  <p>Powered by Express</p>
+</footer>
+</body>
+</html>
